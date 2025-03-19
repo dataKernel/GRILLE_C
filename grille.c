@@ -38,7 +38,8 @@ struct s_grille     init_grille(char rpz)
 //------------------------------------------------------------------------
 void    maj_cell_sur_grille(struct s_grille *grille, int posi)
 {
-    (*grille)._posi = posi;
+    grille->_posi = posi;
+    grille->_tab[posi] = '_';
 }
 
 
@@ -50,12 +51,18 @@ int     main(void)
     maj_cell_sur_grille(&grille, 4);
 
     int     i = 0;
-    while(i < 3)
+    int     counterRow = 0;
+    while(i < 9)
     {
-        for(int i = 0; i < 3; i++)
-            printf("%c ", grille._tab[i]);
-        printf("\n");
+        if(counterRow == 3)
+        {
+            printf("\n");
+            counterRow = 0;
+        }
+        printf("%c", grille._tab[i]);
+        counterRow++;
         i++;
-    }   
+    }
+    printf("\n");
     return(0);
 }
