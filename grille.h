@@ -10,5 +10,5 @@ struct      s_grille
 //----------------------------------------
 struct s_grille     init_grille(char);
 //----------------------------------------
-void    maj_cell_sur_grille(struct s_grille, int posi);
+void    maj_cell_sur_grille(struct s_grille*, int posi);
 int     ft_tailleStr(char*);

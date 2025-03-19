@@ -26,12 +26,7 @@ struct s_grille     init_grille(char rpz)
 {
     struct s_grille     grille;
 
-    grille._posi = -1; /*c histoire de set la posi mais c'est techniquement
-    incorrect de set sa posi à 0 si on l'affiche après l'init
-    solution1: définir un nbr négatif et faire un check sur nega, si c'est
-    le cas on refuse l'affichage.
-    solution2: un bool pr check sur un champ indépendant si la posi à été 
-    set sinon on ne peut pas afficher la grille*/ 
+    grille._posi = -1;
     grille._tailleTab = 9;
     grille._rpz = rpz;
     for(int i = 0; i < 9; i++)
@@ -41,9 +36,9 @@ struct s_grille     init_grille(char rpz)
 //------------------------------------------------------------------------
 // -- set posi de la cellule dans la grille --
 //------------------------------------------------------------------------
-void    maj_cell_sur_grille(struct s_grille grille, int posi)
+void    maj_cell_sur_grille(struct s_grille *grille, int posi)
 {
-    printf("posi:%i", grille._posi);
+    (*grille)._posi = posi;
 }
 
 
@@ -52,6 +47,7 @@ int     main(void)
     struct s_grille     grille;
 
     grille = init_grille('X');
+    maj_cell_sur_grille(&grille, 4);
 
     int     i = 0;
     while(i < 3)
@@ -60,7 +56,6 @@ int     main(void)
             printf("%c ", grille._tab[i]);
         printf("\n");
         i++;
-    }
-    maj_cell_sur_grille(grille, 11111);   
+    }   
     return(0);
 }
